@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <!-- Кодировка веб-страницы -->
+    <meta charset="utf-8">
+    <!-- Настройка viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- jQuery -->
+    <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Popper (необходим для работы некоторых компонентов Bootstrap 4, таких как Dropdown и др.) -->
+    <script defer src="js/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script defer src="js/bootstrap.min.js"></script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Стиральные машины</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Доп вкладка<span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0" action="login.html">
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Выйти</button>
+        </form>
+    </div>
+</nav>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">№</th>
+        <th scope="col">IP</th>
+        <th scope="col">Включить машину</th>
+        <th scope="col">Старт</th>
+        <th scope="col">Отключить отображение</th>
+        <th scope="col">Добавить порошок</th>
+        <th scope="col">Пользователь</th>
+        <th scope="col">Отправить промокод</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>
+            <button type="button" class="btn btn-outline-dark">Включить</button>
+        </td>
+        <td>
+            <button type="button" class="btn btn-outline-dark">Старт</button>
+        </td>
+        <td>
+            <button type="button" class="btn btn-outline-dark">Отключить</button>
+        </td>
+        <td>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="">
+            </div>
+        </td>
+        <td>
+            <div class="input-group mb-3">
+                <input list="browsers1" name="browser">
+                <datalist id="browsers1">
+                    <option value="Вася">
+                    <option value="Дима">
+                    <option value="Вова">
+                    <option value="Ваня">
+                    <option value="Петя">
+                </datalist>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button">Назначить</button>
+                </div>
+            </div>
+        </td>
+        <td>
+            <button type="button" class="btn btn-outline-dark">Промокод</button>
+        </td>
+    </tr>
+    <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>
+            <button type="button" class="btn btn-outline-dark">Включить</button>
+        </td>
+        <td>
+            <button type="button" class="btn btn-outline-dark">Старт</button>
+        </td>
+        <td>
+            <button type="button" class="btn btn-outline-dark">Отключить</button>
+        </td>
+        <td>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="">
+            </div>
+        </td>
+        <td>
+            <div class="input-group mb-3">
+                <input list="browsers2" name="browser">
+                <datalist id="browsers2">
+                    <option value="Вася">
+                    <option value="Дима">
+                    <option value="Вова">
+                    <option value="Ваня">
+                    <option value="Петя">
+                </datalist>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button">Назначить</button>
+                </div>
+            </div>
+        </td>
+        <td>
+            <button type="button" class="btn btn-outline-dark">Промокод</button>
+        </td>
+    </tr>
+    <tr>
+        <th scope="row">3</th>
+        <td>Larry</td>
+        <td>
+            <button type="button" class="btn btn-outline-dark">Включить</button>
+        </td>
+        <td>
+            <button type="button" class="btn btn-outline-dark">Старт</button>
+        </td>
+        <td>
+            <button type="button" class="btn btn-outline-dark">Отключить</button>
+        </td>
+        <td>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="">
+            </div>
+        </td>
+        <td>
+            <div class="input-group mb-3">
+                <input list="browsers3" name="browser">
+                <datalist id="browsers3">
+                    <option value="Вася">
+                    <option value="Дима">
+                    <option value="Вова">
+                    <option value="Ваня">
+                    <option value="Петя">
+                </datalist>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button">Назначить</button>
+                </div>
+            </div>
+        </td>
+        <td>
+            <button type="button" class="btn btn-outline-dark">Промокод</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
