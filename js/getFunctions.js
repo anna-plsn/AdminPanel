@@ -9,3 +9,14 @@ function getPeople() {
         });
     });
 }
+
+function login(){
+    $.ajax(
+        'https://pandawok.guprint.ru/login',
+        {
+            success: function(data) {
+                alert('Data from the server' + data);
+            }
+        }
+    );
+}

@@ -13,7 +13,7 @@
     <!-- Bootstrap JS -->
     <script defer src="js/bootstrap.min.js"></script>
 
-    <script src="js/getPeople.js"></script>
+    <script src="js/getFunctions.js"></script>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -50,7 +50,7 @@
         <th scope="col">Пользователь</th>
         <th scope="col">Отправить промокод</th>
     </tr>
-    </thead>
+    </thead> 
     <tbody>
     <tr>
         <th scope="row">1</th>
@@ -75,7 +75,9 @@
                     <script>window.onload=getPeople;</script>
                     <input list="peopleList" name="peopleList">
                         <datalist id="peopleList"></datalist>
-                        <button class="btn btn-outline-secondary" type="submit">Назначить</button>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit">Назначить</button>
+                        </div>
                 </div>
             </form>
                 

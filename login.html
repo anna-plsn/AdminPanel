@@ -13,12 +13,40 @@
     <!-- Bootstrap JS -->
     <script defer src="js/bootstrap.min.js"></script>
 
+    <script src="js/getFunctions.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("form").on("submit", function(event){
+                event.preventDefault();
+                var $form = $( this ),
+                    email = $form.find( "input[name='email']" ).val(),
+                    password = $form.find( "input[name='password']" ).val();
+                $.ajax({
+                    type : "POST",
+                    processData: false,
+                    url: "https://pandawok.guprint.ru/login",
+                    contentType: 'application/json',
+                    data: JSON.stringify({"email": email, "password": password}),
+                    complete: function(data) {
+                        if(JSON.parse(data.responseText).success){
+                            console.log("Приветик");
+                            location.href = 'main.html';
+                        }else{
+                            alert("Wrong password")
+                        }
+                    }
+                });
+            });
+        });
+    </script>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css" >
     <link href="css/singin.css" rel="stylesheet">
 </head>
 <body class="text-center">
-<form class="form-signin" method="GET" action="login">
+<form class="form-signin">
     <input type="inputEmail" id="inputLogin" name="email" class="form-control" placeholder="Email">
     <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password">
     <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
