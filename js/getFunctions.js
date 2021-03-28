@@ -4,7 +4,7 @@ function getPeople() {
 
     $.getJSON(url, function(data) {
         $(data.result).each(function() {
-            peopleOption = "<option value=\"" + this.id + "\">" + this.fullName + "</option>";
+            peopleOption = "<option value=\"" + this.fullName + "\">" + this.id + "</option>";
             $('#peopleList').append(peopleOption);
         });
     });
