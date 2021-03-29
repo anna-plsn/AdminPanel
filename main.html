@@ -45,16 +45,20 @@
                 row.append($("<td>" + result.ip + "</td>"));
                 row.append($("<td>" + result.hardwareVersion + "</td>"));
                 row.append($("<td>" + result.currentStatusName + "</td>"));
-                row.append($(`<td><form method="GET" action="peopleAdd"><div class="input-group mb-3"><script>window.onload=getPeople;`</script>' + '<input list="peopleList" name="peopleList"> ' +
-                    '<datalist id="peopleList"></datalist> ' +
-                    '<div class="input-group-append"> ' +
-                    '<button class="btn btn-outline-secondary" type="submit">Назначить</button> ' +
-                    '</div> ' +
-                    '</div> ' +
-                    '</form></td>'));
+                row.append($("<td>" +
+                    "<form method=\"GET\" action=\"peopleAdd\" onload='getPeople()'>" +
+                "<div class=\"input-group mb-3\">" +
+                    "<input list=\"peopleList\" name=\"peopleList\">" +
+                "<datalist id=\"peopleList\"></datalist>" +
+                "<div class=\"input-group-append\">" +
+                "<button class=\"btn btn-outline-secondary\" type=\"submit\">Назначить</button>" +
+                "</div>" +
+                "</div>" +
+                "</form>" +
+                "</td>"));
                 row.append($("<td>" + result.doorState + "</td>"));
                 for (var i = 0; i < result.availableButtons.length; ++i) {
-                    row.append($("<td><button>" + result.availableButtons[i].buttonName + "</button></td>"));
+                    row.append($("<td><button type=\"button\" class=\"btn btn-outline-dark\">" + result.availableButtons[i].buttonName + "</button></td>"));
                 }
             }
         });
@@ -102,41 +106,20 @@
         </tr>
         </thead>
         <tbody>
-
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th scope="col">№</th>
-                <th scope="col">IP</th>
-                <th scope="col">Включить машину</th>
-                <th scope="col">Старт</th>
-                <th scope="col">Отключить отображение</th>
-                <th scope="col">Добавить порошок</th>
-                <th scope="col">Пользователь</th>
-                <th scope="col">Отправить промокод</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-
-                <td><form method="GET" action="peopleAdd">
-                        <div class="input-group mb-3">
-                            <script>window.onload=getPeople;</script>
+                    <form method="GET" action="peopleAdd">
+                        <div class="input-group mb-3" style="display: none;">
+                            <script>window.onload = getPeople;</script>
                             <input list="peopleList" name="peopleList">
                             <datalist id="peopleList"></datalist>
                             <div class="input-group-append">
                                 <button class="btn btn-outline-secondary" type="submit">Назначить</button>
                             </div>
                         </div>
-                </form></td>
+                    </form>
+            </tbody>
 
+        </table>
 
-        <td>
-            <button type="button" class="btn btn-outline-dark">Промокод</button>
-        </td>
-
-        </tbody>
-    </table>
 </div>
 </body>
 
