@@ -12,11 +12,54 @@
     <script defer src="js/popper.min.js"></script>
     <!-- Bootstrap JS -->
     <script defer src="js/bootstrap.min.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="js/getFunctions.js"></script>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: 'https://pandawok.guprint.ru/machine/list',
+                type: "get",
+                dataType: "json",
+
+                success: function (result) {
+                    drawTable(result.result);
+                }
+            });
+
+            function drawTable(result) {
+                for (var i = 0; i < result.length; i++) {
+                    drawRow(result[i]);
+                }
+            }
+
+            function drawRow(result) {
+                var row = $("<tr />")
+                $("#table").append(row);
+                row.append($("<td>" + result.id + "</td>"));
+                row.append($("<td>" + result.name + "</td>"));
+                row.append($("<td>" + result.machineTypeName + "</td>"));
+                row.append($("<td>" + result.machineTypeId + "</td>"));
+                row.append($("<td>" + result.ip + "</td>"));
+                row.append($("<td>" + result.hardwareVersion + "</td>"));
+                row.append($("<td>" + result.currentStatusName + "</td>"));
+                row.append($(`<td><form method="GET" action="peopleAdd"><div class="input-group mb-3"><script>window.onload=getPeople;`</script>' + '<input list="peopleList" name="peopleList"> ' +
+                    '<datalist id="peopleList"></datalist> ' +
+                    '<div class="input-group-append"> ' +
+                    '<button class="btn btn-outline-secondary" type="submit">Назначить</button> ' +
+                    '</div> ' +
+                    '</div> ' +
+                    '</form></td>'));
+                row.append($("<td>" + result.doorState + "</td>"));
+                for (var i = 0; i < result.availableButtons.length; ++i) {
+                    row.append($("<td><button>" + result.availableButtons[i].buttonName + "</button></td>"));
+                }
+            }
+        });
+    </script>
+
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -37,126 +80,63 @@
         </form>
     </div>
 </nav>
+
 <div class="table-responsive">
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th scope="col">№</th>
-        <th scope="col">IP</th>
-        <th scope="col">Включить машину</th>
-        <th scope="col">Старт</th>
-        <th scope="col">Отключить отображение</th>
-        <th scope="col">Добавить порошок</th>
-        <th scope="col">Пользователь</th>
-        <th scope="col">Отправить промокод</th>
-    </tr>
-    </thead> 
-    <tbody>
-    <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>
-            <button type="button" class="btn btn-outline-dark">Включить</button>
-        </td>
-        <td>
-            <button type="button" class="btn btn-outline-dark">Старт</button>
-        </td>
-        <td>
-            <button type="button" class="btn btn-outline-dark">Отключить</button>
-        </td>
-        <td>
-            <button type="button" class="btn btn-outline-dark">Добавить</button>
-        </td>
-        <td>
-            
-                
-            <form method="GET" action="peopleAdd">
-                <div class="input-group mb-3">
-                    <script>window.onload=getPeople;</script>
-                    <input list="peopleList" name="peopleList">
-                        <datalist id="peopleList"></datalist>
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="submit">Назначить</button>
+    <table class="table table-striped" id="table">
+        <thead>
+        <tr>
+            <th scope="col">№</th>
+            <th scope="col">Name</th>
+            <th scope="col">machineTypeName</th>
+            <th scope="col">machineTypeId</th>
+            <th scope="col">IP</th>
+            <th scope="col">hardwareVersion</th>
+            <th scope="col">currentStatusName</th>
+            <th scope="col">User</th>
+            <th scope="col">doorState</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">№</th>
+                <th scope="col">IP</th>
+                <th scope="col">Включить машину</th>
+                <th scope="col">Старт</th>
+                <th scope="col">Отключить отображение</th>
+                <th scope="col">Добавить порошок</th>
+                <th scope="col">Пользователь</th>
+                <th scope="col">Отправить промокод</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+
+                <td><form method="GET" action="peopleAdd">
+                        <div class="input-group mb-3">
+                            <script>window.onload=getPeople;</script>
+                            <input list="peopleList" name="peopleList">
+                            <datalist id="peopleList"></datalist>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="submit">Назначить</button>
+                            </div>
                         </div>
-                </div>
-            </form>
-                
-            
-        </td>
+                </form></td>
+
+
         <td>
             <button type="button" class="btn btn-outline-dark">Промокод</button>
         </td>
-    </tr>
-    <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>
-            <button type="button" class="btn btn-outline-dark">Включить</button>
-        </td>
-        <td>
-            <button type="button" class="btn btn-outline-dark">Старт</button>
-        </td>
-        <td>
-            <button type="button" class="btn btn-outline-dark">Отключить</button>
-        </td>
-        <td>
-            <button type="button" class="btn btn-outline-dark">Добавить</button>
-        </td>
-        <td>
-            <div class="input-group mb-3">
-                <input list="browsers2" name="browser">
-                <datalist id="browsers2">
-                    <option value="Вася">
-                    <option value="Дима">
-                    <option value="Вова">
-                    <option value="Ваня">
-                    <option value="Петя">
-                </datalist>
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button">Назначить</button>
-                </div>
-            </div>
-        </td>
-        <td>
-            <button type="button" class="btn btn-outline-dark">Промокод</button>
-        </td>
-    </tr>
-    <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>
-            <button type="button" class="btn btn-outline-dark">Включить</button>
-        </td>
-        <td>
-            <button type="button" class="btn btn-outline-dark">Старт</button>
-        </td>
-        <td>
-            <button type="button" class="btn btn-outline-dark">Отключить</button>
-        </td>
-        <td>
-            <button type="button" class="btn btn-outline-dark">Добавить</button>
-        </td>
-        <td>
-            <div class="input-group mb-3">
-                <input list="browsers3" name="browser">
-                <datalist id="browsers3">
-                    <option value="Вася">
-                    <option value="Дима">
-                    <option value="Вова">
-                    <option value="Ваня">
-                    <option value="Петя">
-                </datalist>
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button">Назначить</button>
-                </div>
-            </div>
-        </td>
-        <td>
-            <button type="button" class="btn btn-outline-dark">Промокод</button>
-        </td>
-    </tr>
-    </tbody>
-</table>
+
+        </tbody>
+    </table>
 </div>
 </body>
 
