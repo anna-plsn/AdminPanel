@@ -35,7 +35,17 @@
                 }
             }
 
+            function getPeople2(index) {
+                $(peopleArray).each(function() {
+
+                    peopleOption = "<option data-index=\""+index+"\" value=\"" + this.id + "\">" + this.fullName + "</option>";
+                    $("#peopleList_"+index).append(peopleOption);
+                });
+
+            }
+
             function drawRow(result) {
+                var i = 0;
                 var row = $("<tr />")
                 $("#table").append(row);
                 row.append($("<td>" + result.id + "</td>"));
@@ -46,21 +56,44 @@
                 row.append($("<td>" + result.hardwareVersion + "</td>"));
                 row.append($("<td>" + result.currentStatusName + "</td>"));
                 row.append($("<td>" +
-                    "<form method=\"GET\" action=\"peopleAdd\" onload='getPeople()'>" +
-                "<div class=\"input-group mb-3\">" +
-                    "<input list=\"peopleList\" name=\"peopleList\">" +
-                "<datalist id=\"peopleList\"></datalist>" +
-                "<div class=\"input-group-append\">" +
-                "<button class=\"btn btn-outline-secondary\" type=\"submit\">Назначить</button>" +
-                "</div>" +
-                "</div>" +
-                "</form>" +
-                "</td>"));
+                    "<div class=\"input-group mb-3\">" +
+                        "<input id=\"inputPeopleList_"+result.id+"\" list=\"peopleList_"+result.id+"\" value=\""+result.currentUserId+"\" name=\"peopleList\">" +
+                        "<datalist id=\"peopleList_"+result.id+"\"></datalist>" +
+                    "</div>" +
+                    "</td>"));
+                getPeople2(result.id);
                 row.append($("<td>" + result.doorState + "</td>"));
-                for (var i = 0; i < result.availableButtons.length; ++i) {
-                    row.append($("<td><button type=\"button\" class=\"btn btn-outline-dark\">" + result.availableButtons[i].buttonName + "</button></td>"));
+                for (; i < result.availableButtons.length; ++i) {
+                    row.append($("<td>"));
+                    row.append($("<button type=\"button\" id=\"" + result.availableButtons[i].buttonAlias + "_" + result.id + "\" data-id=\""+result.id+"\" data-indexiter=\""+i+"\" class=\"btn btn-outline-dark\">" + result.availableButtons[i].buttonName + "</button>"));
+                    row.append($("</td>"));
+
+                    $(document).on('click', '#' + result.availableButtons[i].buttonAlias + '_' + result.id, function (e) {
+                        e.preventDefault();
+                        var index_iter = $(this).data("indexiter");
+                        var id = $(this).data("id");
+                        var currentUserId = $("#inputPeopleList_"+id).val();
+                        if (currentUserId !== ""){
+                            //todo make url with userId placeholder
+                            var url = result.availableButtons[index_iter].url;
+                            // todo if amount !== "" then make sendPaymentLinkToUser function with placeholder
+                        }
+                        $.ajax({
+                            type: "GET",
+                            url: url,
+                            data: {
+                            },
+                            success: function (result) {
+                                alert('ok');
+                            },
+                            error: function (result) {
+                                alert('error');
+                            }
+                        });
+                    });
                 }
             }
+
         });
     </script>
 
@@ -106,19 +139,19 @@
         </tr>
         </thead>
         <tbody>
-                    <form method="GET" action="peopleAdd">
-                        <div class="input-group mb-3" style="display: none;">
-                            <script>window.onload = getPeople;</script>
-                            <input list="peopleList" name="peopleList">
-                            <datalist id="peopleList"></datalist>
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="submit">Назначить</button>
-                            </div>
-                        </div>
-                    </form>
-            </tbody>
+        <form method="GET" action="peopleAdd">
+            <div class="input-group mb-3" style="display: none;">
+                <script>window.onload = getPeople;</script>
+                <input list="peopleList" name="peopleList">
+                <datalist id="peopleList"></datalist>
+                <div class="input-group-append">
+<!--                    <button class="btn btn-outline-secondary" type="submit">Назначить</button>-->
+                </div>
+            </div>
+        </form>
+        </tbody>
 
-        </table>
+    </table>
 
 </div>
 </body>

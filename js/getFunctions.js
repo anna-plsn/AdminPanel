@@ -1,11 +1,11 @@
+var peopleArray = [];
+
 function getPeople() {
-    var url, peopleOption;
-    url = 'https://pandawok.guprint.ru/user/all';
+    var url = 'https://pandawok.guprint.ru/user/all';
 
     $.getJSON(url, function(data) {
         $(data.result).each(function() {
-            peopleOption = "<option value=\"" + this.fullName + "\">" + this.id + "</option>";
-            $('#peopleList').append(peopleOption);
+            peopleArray.push({fullName: this.fullName, id: this.id});
         });
     });
 }
