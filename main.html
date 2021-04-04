@@ -73,10 +73,12 @@
                         var index_iter = $(this).data("indexiter");
                         var id = $(this).data("id");
                         var currentUserId = $("#inputPeopleList_"+id).val();
-                        if (currentUserId !== ""){
-                            //todo make url with userId placeholder
-                            var url = result.availableButtons[index_iter].url;
-                            // todo if amount !== "" then make sendPaymentLinkToUser function with placeholder
+                        var url = result.availableButtons[index_iter].url;
+                        if (result.availableButtons[index_iter].buttonAlias === "setUser"){
+                            url = (result.availableButtons[index_iter].url).replace("{userId}", currentUserId);
+                        }
+                        if (result.availableButtons[index_iter].buttonAlias === "sendPaymentLinkToUser"){
+                            url = (result.availableButtons[index_iter].url).replace("{amount}", currentUserId).replace("{userId}", result.currentUserId)
                         }
                         $.ajax({
                             type: "GET",
